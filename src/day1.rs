@@ -1,11 +1,11 @@
 pub fn challenge() {
-    let mut sorted_calories = include_str!("inputs/day1.test").split("\n\n")
+    let mut sorted_calories = include_str!("../data/day1.prod").split("\n\n")
         .map(|x| {
             return x.split('\n').flat_map(str::parse::<usize>)
                 .sum::<usize>();
         }).collect::<Vec<usize>>();
 
-    println!("Part 1 => {:?}", sorted_calories.iter().max());
+    println!("Part 1 => {:?}", sorted_calories.iter().max().unwrap());
 
     sorted_calories.sort_by(|a, b| b.cmp(a));
 

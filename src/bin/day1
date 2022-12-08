@@ -2,9 +2,9 @@
 
 if ! command -v fzf &> /dev/null
 then
-    go_file=../inputs/day1.test
+    go_file=../../data/day1.test
 else
-    go_file=$(find ../inputs -type f ! -executable | fzf)
+    go_file=$(find ../../data -type f ! -executable | fzf)
 fi
 
 echo "====== Part 1 ======" 

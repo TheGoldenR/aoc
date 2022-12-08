@@ -9,7 +9,7 @@ export abstract class Index {
     static start(): void {
         
         //@ts-ignore
-        const input: string = readFileSync(path.join(process.cwd(), "inputs/day1.prod"), "utf8");
+        const input: string = readFileSync(path.join(process.cwd(), "../data/day1.prod"), "utf8");
 
         //@ts-ignore
         const max: number = input.split("\n\n").map( x => {

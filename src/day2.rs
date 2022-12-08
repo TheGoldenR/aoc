@@ -93,7 +93,7 @@ fn play_mappping(me: &str, elf: &str) -> usize {
 
 pub fn challenge(){
 
-    let game = include_str!("inputs/day2.prod").lines()
+    let game = include_str!("../data/day2.prod").lines()
         .flat_map(|x| x.parse()).collect::<Vec<Round>>();
 
     //println!("{:?}", &game);
