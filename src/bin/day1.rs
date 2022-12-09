@@ -1,5 +1,5 @@
-pub fn challenge() {
-    let mut sorted_calories = include_str!("../data/day1.prod").split("\n\n")
+fn main() {
+    let mut sorted_calories = include_str!("../../data/day1.prod").split("\n\n")
         .map(|x| {
             return x.split('\n').flat_map(str::parse::<usize>)
                 .sum::<usize>();

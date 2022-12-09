@@ -91,14 +91,12 @@ fn play_mappping(me: &str, elf: &str) -> usize {
 
 }
 
-pub fn challenge(){
+fn main(){
 
-    let game = include_str!("../data/day2.prod").lines()
+    let game = include_str!("../../data/day2.prod").lines()
         .flat_map(|x| x.parse()).collect::<Vec<Round>>();
 
     //println!("{:?}", &game);
     println!("{:?}", &game.iter().map(|x| x.score).sum::<usize>());
     println!("{:?}", &game.iter().map(|x| x.score2).sum::<usize>());
-
 }
-
