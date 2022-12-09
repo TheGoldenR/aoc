@@ -7,12 +7,17 @@ import { readFileSync } from "fs";
 //@ts-ignore
 const input: string = readFileSync(path.join(__dirname, "../../data/day1.prod"), "utf8");
 
-//@ts-ignore
-console.log(input);
+let list: number[] = input.split("\n\n")
+            .map(x => x.split("\n")
+                 .map(x => {  
+                     let numb: number = parseInt(x);
+                     return !isNaN(numb)? numb : 0;
+                 }).reduce((sum: number, curVal: number) => sum + curVal, 0)
+                ).sort((x,y) => x-y);
 
-//@ts-ignore
-const max: number = input.split("\n\n").map( x => {
-    return x.split("\n").map( y => parseInt(y, 10)).reduce((sum, curVal) => sum + curVal)
-}).sort( (y,z) => y-z).pop()
+console.log("=== Part 1 ===");
 
-console.log(max)
+console.log(list.slice(-1));
+
+console.log("=== Part 2 ===");
+console.log(list.slice(-3).reduce((sum, val)=>sum+val, 0));
