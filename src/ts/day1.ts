@@ -1,4 +1,3 @@
-
 //@ts-ignore
 import * as path from "path";
 //@ts-ignore
