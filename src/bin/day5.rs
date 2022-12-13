@@ -68,16 +68,16 @@ impl Crane {
     }
 
     // Joins the top element from each stack
-}
+    fn last_join(&self) { 
+        let mut str = String::new();
 
-fn last_join(x: Crane) { 
-    let mut str = String::new();
-
-    for sup in x.supplies.into_iter() {
-        str.push(*sup.last().unwrap());
+        for sup in &self.supplies {
+            str.push(*sup.last().unwrap());
+        }
+        println!("{}", str);
     }
-    println!("{}", str);
 }
+
 
 struct Move { 
     times: usize, 
@@ -122,7 +122,7 @@ fn part1(input: &str) {
 
    let mut crane = input.parse::<Crane>().unwrap();
    crane.push_pop();
-   last_join(crane);
+   crane.last_join();
 }
 
 fn part2(iput: &str) {
