@@ -52,12 +52,13 @@ function playPoints(round: number[]): number{
 
     switch (round[1]){
         case 1: 
-            //3 is Z(Scissor) value => to (round[0] - 1 < 1), the elf picked A (ROCK) so I need pick Z(Scissor)
+            //3 is the Z(Scissor) value 
             return round[0] - 1 < 1 ? 3 : round[0] - 1; 
         case 2: 
             return round[0] + DRAW;
         case 3: 
-            return round[0] + 1 > 3 ? (1 + WIN) : round[0] + 7;
+            // 1 is the A(Rock) value 
+            return round[0] + 1 > 3 ? (1 + WIN) : (round[0] + 1 + WIN);
         default: 
             return 10000
     }
