@@ -53,6 +53,7 @@ fn get_stacks(s: &str) -> Vec<Vec<char>> {
 }
 
 impl Crane { 
+    //Part1
     fn push_pop(&mut self) {
         //pop
         for mv in self.moves.iter() { 
@@ -67,6 +68,28 @@ impl Crane {
         }
     }
 
+    //Part 2
+    fn pop_multiple(&mut self) { 
+        
+        for mv in self.moves.iter() { 
+
+            let mut temp: Vec<char> = Vec::new();
+            let mut times = mv.times;
+
+            while times > 0 {
+
+                let transaction = self.supplies[mv.from-1].pop().expect("this is useless here but ok");
+                temp.push(transaction);
+
+                times -= 1;
+            }
+
+            while !temp.is_empty() {
+                self.supplies[mv.to-1].push(temp.pop().expect("sd"));
+            }
+        }
+    }
+
     // Joins the top element from each stack
     fn last_join(&self) { 
         let mut str = String::new();
@@ -77,7 +100,6 @@ impl Crane {
         println!("{}", str);
     }
 }
-
 
 struct Move { 
     times: usize, 
@@ -125,6 +147,10 @@ fn part1(input: &str) {
    crane.last_join();
 }
 
-fn part2(iput: &str) {
+fn part2(input: &str) {
 
+   let mut crane = input.parse::<Crane>().unwrap();
+
+   crane.pop_multiple();
+   crane.last_join();
 }
