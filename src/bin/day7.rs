@@ -88,6 +88,7 @@ fn main() {
     println!("=== Part 1 ===");
     part1(&input);
     println!("=== Part 2 ===");
+    part2(&input);
 }
 
 // ('/', 4332453, )
@@ -116,10 +117,31 @@ fn part1(s: &str) {
             .sum::<usize>()
     );
 
-    for i in vec.into_iter() {
-        println!("file: {:?}, size: {:?}", i.0, i.1);
-    }
+    //for i in vec.into_iter() {
+    //println!("file: {:?}, size: {:?}", i.0, i.1);
+    //}
 }
 
-//fn part2(s: &str) {
-//}
+fn part2(s: &str) {
+    let mut filesystem = s
+        .split("$ cd")
+        .skip(1)
+        .filter(|x| x.trim() != "..")
+        .map(|x| x.parse::<Dir>().expect("Some error"))
+        .collect::<Filesystem>();
+
+    let mut vec: Vec<(String, usize)> = Vec::new();
+    dir_size(&mut filesystem, "/".to_string(), &mut vec);
+
+    let free = 70_000_000 - vec.iter().last().unwrap().1;
+    let size_to_free: usize = 30000000 - free;
+
+    println!(
+        "{:?}",
+        vec.iter()
+            .filter(|x| x.1 >= size_to_free)
+            .map(|x| x.1)
+            .min()
+            .unwrap()
+    );
+}
