@@ -1,6 +1,6 @@
 //Test results (7,5,6,10,11)
 fn main() {
-    let input = include_str!("../../data/day6.prod");
+    let input = include_str!("../../data/day6.prod").as_bytes();
 
     println!("=== Part 1 ===");
     let sol = solve(input, 4);
@@ -13,13 +13,12 @@ fn main() {
 
 // NotB3NNY, from Prime discord, byte approach
 // Veeery clever
-fn solve(i: &str, num: usize) -> usize {
-    let i = i.as_bytes();
+fn solve(i: &[u8], num: usize) -> usize {
     let mut filter = 0u32;
 
     i.iter()
         .take(num - 1)
-        .for_each(|c| filter ^= 1 << (c - b'a')); //a => 97 => 0110 0001
+        .for_each(|c| filter ^= 1 << (c - b'a'));
 
     i.windows(num)
         .position(|w| {
@@ -30,6 +29,6 @@ fn solve(i: &str, num: usize) -> usize {
             filter ^= 1 << (first - b'a');
             res
         })
-        .map(|x| x + num)
-        .unwrap()
+        .expect("bad bad")
+        + num
 }
